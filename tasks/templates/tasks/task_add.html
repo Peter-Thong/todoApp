@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>to do list today</title>
+    </head>
+    <body>
+        <h1>hello world</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{form.title}}
+            <input type="submit" value="Save">
+        </form>
+        {% for task in task_list %}
+            <div class="">
+                <a href="{{task.get_update_url}}">update</a>
+                <a href="{{task.get_delete_url}}">delete</a>
+                {% if task.complete %}
+                    <s>{{task.title}}</s>
+                {% else %}
+                    <span>{{task.title}}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </body>
+</html>
